@@ -1,0 +1,7 @@
+<trade>
+    <securityId>GOOGL</securityId>
+    <clientName>Client B</clientName>
+    <timestamp>2023-10-02T10:15:30</timestamp>
+    <quantity>50</quantity>
+    <price>2800.50</price>
+</trade>

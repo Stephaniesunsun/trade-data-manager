@@ -1,0 +1,7 @@
+<trade>
+    <securityId>AAPL</securityId>
+    <clientName>Client A</clientName>
+    <timestamp>2023-10-01T12:34:56</timestamp>
+    <quantity>100</quantity>
+    <price>150.75</price>
+</trade>
