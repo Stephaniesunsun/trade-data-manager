@@ -1,22 +1,26 @@
 package com.harrisburg.trade_manager.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @Data
 @Entity
+@XmlRootElement(name = "trade")
 public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String securityId;
+
     private String clientName;
-    private LocalDateTime timestamp;
+
+    private String timestamp;
+
     private double quantity;
+
     private double price;
 }

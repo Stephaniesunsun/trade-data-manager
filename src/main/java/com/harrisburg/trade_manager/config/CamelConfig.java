@@ -20,8 +20,7 @@ public class CamelConfig extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        System.out.println("CamelConfig route is being configured...");
-        // Print the absolute path of the input/trades directory
+        System.out.println("start reading files");
         Resource resource = resourceLoader.getResource("file:input/trades");
         try {
             System.out.println("Input directory path: " + resource.getURI());
@@ -29,11 +28,9 @@ public class CamelConfig extends RouteBuilder {
             System.err.println("Error resolving input directory path: " + e.getMessage());
         }
 
-        // Configure JAXB for XML deserialization
         JaxbDataFormat jaxbDataFormat = new JaxbDataFormat();
         jaxbDataFormat.setContextPath(Trade.class.getPackage().getName());
 
-        // File-based route to mock Kafka messages
         from("file:input/trades?noop=true")
                 .log("Received file: ${header.CamelFileName}")
                 .unmarshal(jaxbDataFormat)

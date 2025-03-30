@@ -1,31 +1,28 @@
 package com.harrisburg.trade_manager.service;
 
 import com.harrisburg.trade_manager.model.Trade;
+import com.harrisburg.trade_manager.repository.TradeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TradeService {
 
-    private final List<Trade> trades = new ArrayList<>();
-    private long nextId = 1;
+    @Autowired
+    private TradeRepository tradeRepository;
 
     public List<Trade> getAllTrades() {
-        return trades;
+        return tradeRepository.findAll();
     }
 
     public Optional<Trade> getTradeById(Long id) {
-        return trades.stream()
-                .filter(trade -> trade.getId().equals(id))
-                .findFirst();
+        return tradeRepository.findById(id);
     }
 
     public Trade saveTrade(Trade trade) {
-        trade.setId(nextId++); // Assign a unique ID
-        trades.add(trade); // Add to the in-memory list
-        return trade;
+        return tradeRepository.save(trade);
     }
 }
